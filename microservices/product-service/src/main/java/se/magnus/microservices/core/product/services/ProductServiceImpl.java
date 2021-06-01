@@ -31,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
             throw new InvalidInputException("Invalid productId: " + productId);
         }
 
+        // Since we currently aren't using a database, we have to simulate when to throw `NotFoundException`.
         if(productId == 13){
             throw new NotFoundException("No product found for productId: " + productId);
         }

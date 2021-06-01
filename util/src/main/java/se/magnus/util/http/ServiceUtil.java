@@ -9,6 +9,11 @@ import org.springframework.stereotype.Component;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+
+/**
+ * `@Component` indicates that an annotated class is a "component". Such classes are considered
+ * as candidates for auto-detection when using annotation-based configuration and classpath scanning.
+ */
 @Component
 public class ServiceUtil {
     private static final Logger LOG = LoggerFactory.getLogger(ServiceUtil.class);
@@ -17,9 +22,16 @@ public class ServiceUtil {
 
     private String serviceAddress = null;
 
+    /**
+     * `@Autowired` enables automatic injections which injects as many suitable beans as possible
+     * into the parameters. `@Value` Annotation at the field or method/constructor parameter level
+     * that indicates a default value expression for the affected argument.
+     *
+     * @param port The port where the server is listening to.
+     */
     @Autowired
     public ServiceUtil(
-        @Value("${server.port}") String port) {
+            @Value("${server.port}") String port) {
 
         this.port = port;
     }

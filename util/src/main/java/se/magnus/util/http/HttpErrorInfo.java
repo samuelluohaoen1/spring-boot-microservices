@@ -4,6 +4,9 @@ import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
+/**
+ * A POJO that contains relevant information about an exception.
+ */
 public class HttpErrorInfo {
     private final ZonedDateTime timestamp;
     private final String path;

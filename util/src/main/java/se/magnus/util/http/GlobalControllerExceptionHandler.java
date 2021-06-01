@@ -11,22 +11,43 @@ import se.magnus.util.exceptions.NotFoundException;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
+/**
+ * `@RestControllerAdvice` is a syntactic sugar for `@ControllerAdvice` and `@ResponseBody`.
+ * `@ResponseBody`: Annotation that indicates a method return value should be bound to the web
+ * response body.
+ * `@ControllerAdvice`: By default the methods in an @ControllerAdvice apply globally to all Controllers.
+ * Use selectors annotations(), basePackageClasses(), and basePackages() (or its alias value()) to define
+ * a more narrow subset of targeted Controllers.
+ * Since all our components in our microservice landscape will have this package as a dependency, they
+ * automatically get the error handling behavior defined here.
+ */
 @RestControllerAdvice
 class GlobalControllerExceptionHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(GlobalControllerExceptionHandler.class);
 
+
+    /**
+     * The @ResponseBody annotation tells a controller that the object returned is automatically
+     * serialized into JSON and passed back into the HttpResponse object. Spring adds Jackson
+     * as a dependency by default.
+     *
+     * @param request The arguments for `@ExceptionHandler` annotated methods are ver flexible.
+     *                Refer to the documentation of `@ExceptionHandler` for details.
+     */
     @ResponseStatus(NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public @ResponseBody
     HttpErrorInfo handleNotFoundExceptions(ServerHttpRequest request, Exception ex) {
 
+        // The `HttpErrorInfo` object returned is converted to a json String.
         return createHttpErrorInfo(NOT_FOUND, request, ex);
     }
 
     @ResponseStatus(UNPROCESSABLE_ENTITY)
     @ExceptionHandler(InvalidInputException.class)
-    public @ResponseBody HttpErrorInfo handleInvalidInputException(ServerHttpRequest request, Exception ex) {
+    public @ResponseBody
+    HttpErrorInfo handleInvalidInputException(ServerHttpRequest request, Exception ex) {
 
         return createHttpErrorInfo(UNPROCESSABLE_ENTITY, request, ex);
     }

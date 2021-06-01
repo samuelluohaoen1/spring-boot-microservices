@@ -9,7 +9,7 @@ If you inspect the `build.gradle` files of all the modules in the `microservices
 that they all have this module as a dependency.
 
 
-To study or review:
+# To study or review:
 
 * Packages under `se.magnus.api.core` all display basically the same idea. 
 * The `product` package is commented. Go there if you want to learn about API management.
