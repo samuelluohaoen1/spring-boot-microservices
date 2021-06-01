@@ -5,6 +5,7 @@ of the **Microservice Architecture**:
 2. Central Error Handling 
 3. Batch management of components
 4. Aggregating results of multiple components using the **Edge Server** design pattern.
+5. Testing microservices.
 
 ## 1. Central API management
 Relevant code can be found in the `api` module, `classpath:se.magnus.api`.
@@ -55,11 +56,13 @@ The `product-composite-service` module demonstrate the idea of an **edge server*
 Also note that the current edge server is overly simple in a couple ways:
 
 * It does not do load balancing among multiple instances of the same component.
-* It does not hide the APIs of other components. So if somehow someone knows the URL of our non-edge components, they can access it freely. This is a serious security issue. This issue shall be resolved in later demo projects using **Spring Security**.
+* It does not hide the APIs of other components. So if somehow someone knows the URL of our non-edge components, they can access it freely. This is a serious security issue. This issue shall be resolved in later demo projects using **Spring Security** and **Spring Cloud**.
 * It does not implement the **Service Discover** pattern.
-* ... And many more
+* ... and many more
 
 All the above problems shall be addressed in later projects.
+
+## 5. Testing Microservices
 
 
 
