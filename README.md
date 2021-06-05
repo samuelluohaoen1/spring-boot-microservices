@@ -5,7 +5,7 @@ of the **Microservice Architecture**:
 2. Central Error Handling 
 3. Batch management of components
 4. Aggregating results of multiple components using the **Edge Server** design pattern.
-5. Testing microservices.
+5. Testing microservices and API mocking.
 
 ## 1. Central API management
 Relevant code can be found in the `api` module, `classpath:se.magnus.api`.
@@ -64,7 +64,23 @@ All the above problems shall be addressed in later projects.
 
 ## 5. Testing Microservices
 
+Since we do not have much business logic at this time, we are not doing any unit test. Instead, we focus on testing the APIs that our microservices expose. We use the non-blocking reactive `WebTestClient` that came with Spring WebFlux.
 
+These tests are located in the test folders of `se.magnus.microservices.core.**`
+
+We can run all tests using `./gradlew test`
+
+The most important one to look at is probably tests of `product-composite-service` where the API mocking is happening.
+
+
+
+## 5.1. Adding Semi-automated Tests of the Entire Landscape
+
+Being able to automatically test each microservice in isolation is, of course, very useful, but insufficient!
+
+We need a way to automatically test all of our microservices to ensure that they deliver what we expect!
+
+At this stage of learning, we can achieve it by writing test scripts using something like Bash. Because we want portability even for our test scripts, a great choice would by Python or Go. However, as we will learn in later projects, we will be fully automating tests using Docker.
 
 # Note
 It could be argued that a separate layer for the business logic should be 
