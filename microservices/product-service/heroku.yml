@@ -1,0 +1,8 @@
+setup:
+  confing:
+    SPRING_PROFILES_ACTIVE: docker
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: java -jar /app.jar

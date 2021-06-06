@@ -10,4 +10,4 @@ logging:
 spring.profiles: docker
 
 server:
-  port: $PORT
+  port: ${PORT}
