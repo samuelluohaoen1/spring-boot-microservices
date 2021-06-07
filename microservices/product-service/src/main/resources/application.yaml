@@ -4,10 +4,3 @@ logging:
   level:
     root: INFO
     se.magnus: DEBUG
-
----
-# We can place multiple Spring profiles into the same .yaml file by using "---"
-spring.profiles: docker
-
-server:
-  port: ${PORT}
